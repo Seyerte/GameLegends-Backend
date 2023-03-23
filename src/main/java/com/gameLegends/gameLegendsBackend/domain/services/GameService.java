@@ -17,4 +17,12 @@ public class GameService {
     public List<Game> findAll(){
         return this.gameRepository.findAll();
     }
+
+    public Game getbyId(Long Id){
+        var gameOptional = this.gameRepository.findById(Id);
+        if (gameOptional.isEmpty()) throw new RuntimeException("No game found");
+        return gameOptional.get();
+
+    }
+
 }
