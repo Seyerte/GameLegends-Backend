@@ -16,7 +16,7 @@ public class Game {
     private String genre;
     private String platform;
     private String img;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "developed_id")
     private Company developed;
 

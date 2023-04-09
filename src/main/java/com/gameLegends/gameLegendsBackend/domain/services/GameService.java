@@ -9,9 +9,10 @@ import java.util.List;
 @Service
 public class GameService {
     private final IGameRepository gameRepository;
-
-    public GameService(IGameRepository gameRepository) {
+    private final CompanyService companyService;
+    public GameService(IGameRepository gameRepository, CompanyService companyService) {
         this.gameRepository = gameRepository;
+        this.companyService = companyService;
     }
 
     public List<Game> findAll(){
@@ -25,4 +26,9 @@ public class GameService {
 
     }
 
+    public Game create(Game game) {
+        var company = this.companyService.getAuthUser();
+        game.setDeveloped(company);
+        return this.gameRepository.save(game);
+    }
 }
