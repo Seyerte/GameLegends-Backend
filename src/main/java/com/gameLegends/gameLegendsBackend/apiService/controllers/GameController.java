@@ -28,8 +28,8 @@ public class GameController {
     }
 
     @PostMapping("/games")
-    public Game create (@RequestBody Game game) {
-        return this.gameService.create(game);
+    public ResponseEntity <Game> create (@RequestBody Game game) {
+        return ResponseEntity.ok(this.gameService.create(game));
 
     }
 
